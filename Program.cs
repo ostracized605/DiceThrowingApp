@@ -21,7 +21,8 @@ namespace DiceThrowing{
                 
                 string[,] die=new string[height,width];    ///i = row, j = column
                 object[] dice=new object[6];
-                for (int i=0;i<height;i++){
+                ConstructDie1(die);
+                /*for (int i=0;i<height;i++){
                     System.Console.WriteLine();
                     for (int j=0;j<width;j++){
                         if(i==0){
@@ -47,8 +48,42 @@ namespace DiceThrowing{
 
                     }
                     
+                }*/
+            }
+            public static void ConstructDie1(string[,] die,int height=8,int width=16){
+                for (int i=0;i<height;i++){
+                    for (int j=0;j<width;j++){
+                        Block1(i,j,ref die);
+                    }
+                }
+                for (int i=0;i<height;i++){
+                    for (int j=0;j<width;j++){
+                        System.Console.Write(die[i,j]);
+                    }
+                    System.Console.WriteLine();
+                }
+
+                
+                static void Block1(int i, int j,ref string[,] array,int height=8,int width=16){
+                    if(j==0||j==width-1){
+                        if (i==0){
+                            array[i,j]=" ";
+                        }
+                        else{
+                            array[i,j]="|";
+                        }
+                    }
+                    else{                                       //everything between leftmost and rightmost
+                        if (i==0||i==height-1){
+                            array[i,j]="_";
+                        }
+                        else{
+                            array[i,j]=" ";
+                        }
+                    }
                 }
             }
+
         }
     }
 }

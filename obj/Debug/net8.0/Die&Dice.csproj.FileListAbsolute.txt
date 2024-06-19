@@ -12,3 +12,4 @@ c:\Users\user\Desktop\projects\ideas\Die&Dice\Project1\obj\Debug\net8.0\refint\D
 c:\Users\user\Desktop\projects\ideas\Die&Dice\Project1\obj\Debug\net8.0\Die&Dice.pdb
 c:\Users\user\Desktop\projects\ideas\Die&Dice\Project1\obj\Debug\net8.0\Die&Dice.genruntimeconfig.cache
 c:\Users\user\Desktop\projects\ideas\Die&Dice\Project1\obj\Debug\net8.0\ref\Die&Dice.dll
+c:\Users\user\Desktop\projects\ideas\Die&Dice\Project1\obj\Debug\net8.0\Die&Dice.sourcelink.json
