@@ -58,6 +58,9 @@ namespace DiceThrowing{
             else{
                 Console.Write("Your dice are: ");
                 for (int i=0;i<numberOfDice;i++){
+                    if(i%5==0){
+                        System.Console.WriteLine();
+                    }
                     System.Console.Write(diceValues[i]+1+ " ");
                 }
                 System.Console.Write($"\nYour total is: {total}");
@@ -71,31 +74,44 @@ namespace DiceThrowing{
             }
         }
 
-        public void PointAtDieNumber(int[] diceValues,object[]dice,int i, int k,int j,int num,int count=0){
+        public void PointAtDieNumber(int[] diceValues,object[]dice,int i, int k,int j,int count=0){
             
-            string[,] die=(string[,])dice[diceValues[j+num]];
+            string[,] die=(string[,])dice[diceValues[j+count*5]];
             Console.Write(die[i,k]);
         }
 
-        public void PrintDice(Random r,object[] dice,int numberOfDice,int[] diceValues,int height,int width,int num=0){
-            //PrintDiceLoop(r,dice,numberOfDice,diceValues,num,height,width);
-            
-            while(numberOfDice>5){
-                
-                num=numberOfDice-5;
-                numberOfDice=5;
-                PrintDice(r,dice,num,diceValues,height,width);
-                //PrintDiceLoop(r,dice,numberOfDice,diceValues,num,height,width);
+        public void PrintDice(Random r,object[] dice,int numberOfDice,int[] diceValues,int height,int width,
+        int count=0,int temp=0 ){
+            while (numberOfDice>5){
+                count++;
+                numberOfDice-=5;
             }
-            PrintDiceLoop(r,dice,numberOfDice,diceValues,num,height,width);
+            int tempCount=0;
+            if (count>0&&numberOfDice<5){
+                tempCount=count;
+                temp=numberOfDice;//3
+                numberOfDice=5;//5
+                count--;
+            }
+            int copyCount=count;
+            count=0;
+
+            while(count<=copyCount){
+                PrintDiceLoop(r,dice,numberOfDice,diceValues,height,width,count);
+                if(temp>0&&count==0){
+                    PrintDiceLoop(r,dice,temp,diceValues,height,width,tempCount);
+                    temp=0;
+                }
+                count++;
+            }
         }
 
-        public void PrintDiceLoop(Random r,object[] dice,int numberOfDice,int[] diceValues,int num,int height,int width){
+        public void PrintDiceLoop(Random r,object[] dice,int numberOfDice,int[] diceValues,int height,int width,int count=0){
             
             for (int i=0;i<height;i++){                                                 
                 for (int j=0;j<numberOfDice;j++){                                       
                     for (int k=0;k<width;k++){                                      
-                        PointAtDieNumber(diceValues,dice,i,k,j,num);          
+                        PointAtDieNumber(diceValues,dice,i,k,j,count);          
                     }
                     Console.Write("   ");
                 }
