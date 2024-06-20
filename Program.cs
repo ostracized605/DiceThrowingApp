@@ -13,14 +13,10 @@ namespace DiceThrowing{
             Die.DieConstructor(ref Die.dice);
             Game gm = new Game();
             //Enter the number of dice
-            System.Console.WriteLine("How many dice do you want to throw? Max number is 3.");
-            gm.DiceChosen=gm.Choosing();
+            System.Console.WriteLine($"How many dice do you want to throw? Max number is {Constants.maxDice}.");
+            gm.NumberOfDice=gm.Choosing();
             //Output result
-            int[] array=gm.Throwing(gm.DiceChosen);
-<<<<<<< HEAD
-            Console.ReadLine();
-=======
->>>>>>> 8fbfaf2b78fa8e8a8cd55ee107e7a934b29e1e8e
+            int[] array=gm.Throwing(gm.NumberOfDice);
         }
     }
 }

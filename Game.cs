@@ -3,18 +3,18 @@ using System;
 namespace DiceThrowing{
     class Game{
         public static Random r=new Random();
-        int diceChosen;
-        public int DiceChosen{
-            get{return diceChosen;}
+        int numberOfDice;
+        public int NumberOfDice{
+            get{return numberOfDice;}
             set{
                 if (value<=0){
-                    diceChosen=1;
+                    numberOfDice=1;
                 }
-                else if (value>3){
-                diceChosen=3;    
+                else if (value>Constants.maxDice){
+                numberOfDice=Constants.maxDice;    
                 }
                 else{
-                diceChosen=value;
+                numberOfDice=value;
                 }
             }
         }
@@ -22,7 +22,7 @@ namespace DiceThrowing{
             while(true){
                 try
                 {
-                    DiceChosen=Convert.ToInt32(Console.ReadLine());
+                    NumberOfDice=Convert.ToInt32(Console.ReadLine());
                     break;
                 }
                 catch(FormatException){
@@ -33,61 +33,71 @@ namespace DiceThrowing{
                     System.Console.WriteLine(e.Message);
                 }
             }
-            return DiceChosen;
+            return NumberOfDice;
         }
 
-        public int[] Throwing(int diceChosen){
-            
-            int dieCount=0;
-            int[] dieCountArr=new int[diceChosen];
-            int total=0;
-            switch(diceChosen){
-                case 1:
-                    PrintDice(r,Die.dice,Constants.height,Constants.width,out dieCount);
-                    dieCountArr[0]=dieCount+1;
-                    total+=dieCountArr[0];
-                    PrintResult(dieCountArr,total);
-                    break;
-                case 2:
-                    for (int i=0;i<=1;i++){
-                        PrintDice(r,Die.dice,Constants.height,Constants.width,out dieCount);
-                        dieCountArr[i]=dieCount+1;
-                        total+=dieCountArr[i];
-                    }
-                    PrintResult(dieCountArr,total);
-                    break;
-                case 3:
-                    
-                    for (int i=0;i<=2;i++){
-                        PrintDice(r,Die.dice,Constants.height,Constants.width,out dieCount);
-                        dieCountArr[i]=dieCount+1;
-                        total+=dieCountArr[i];
-                    }
-                    PrintResult(dieCountArr,total);
-                    break;
+        public int[] Throwing(int numberOfDice){
+            AssignDieValue(numberOfDice,out int[] diceValues);
+            PrintDice(r,Die.dice,numberOfDice,diceValues,Constants.height,Constants.width);
+            CountDice(numberOfDice,diceValues,out int total);
+            PrintResult(diceValues,total);
+            return diceValues;
+        }
+        public void CountDice(int numberOfDice,int[] diceValues,out int total){
+            total=0;
+            for (int i=0;i<numberOfDice;i++){
+                total+=diceValues[i]+1;
             }
-            return dieCountArr;
+            
         }
 
-        void PrintResult(int[] dieCountArr,int total){
-            if(diceChosen<=1){
-                Console.Write($"Your die is: {total}");
+        void PrintResult(int[] diceValues,int total){
+            if(numberOfDice<=1){
+                Console.Write($"Your die is: {total+1}");
             }
             else{
                 Console.Write("Your dice are: ");
-                for (int i=0;i<diceChosen;i++){
-                    System.Console.Write(dieCountArr[i]+ " ");
+                for (int i=0;i<numberOfDice;i++){
+                    System.Console.Write(diceValues[i]+1+ " ");
                 }
                 System.Console.Write($"\nYour total is: {total}");
             }
+        }        
+
+        public void AssignDieValue(int numberOfDice,out int[] diceValues){
+            diceValues=new int[numberOfDice];
+            for (int i=0;i<numberOfDice;i++){
+                diceValues[i]=r.Next(6);
+            }
         }
 
-        public void PrintDice(Random r,object[] array,int height,int width,out int dieCount){
-            dieCount=r.Next(6);
-            string[,] die=(string[,])array[dieCount];
-            for (int i=0;i<height;i++){
-                for (int j=0;j<width;j++){
-                    System.Console.Write(die[i,j]);
+        public void PointAtDieNumber(int[] diceValues,object[]dice,int i, int k,int j,int num,int count=0){
+            
+            string[,] die=(string[,])dice[diceValues[j+num]];
+            Console.Write(die[i,k]);
+        }
+
+        public void PrintDice(Random r,object[] dice,int numberOfDice,int[] diceValues,int height,int width,int num=0){
+            //PrintDiceLoop(r,dice,numberOfDice,diceValues,num,height,width);
+            
+            while(numberOfDice>5){
+                
+                num=numberOfDice-5;
+                numberOfDice=5;
+                PrintDice(r,dice,num,diceValues,height,width);
+                //PrintDiceLoop(r,dice,numberOfDice,diceValues,num,height,width);
+            }
+            PrintDiceLoop(r,dice,numberOfDice,diceValues,num,height,width);
+        }
+
+        public void PrintDiceLoop(Random r,object[] dice,int numberOfDice,int[] diceValues,int num,int height,int width){
+            
+            for (int i=0;i<height;i++){                                                 
+                for (int j=0;j<numberOfDice;j++){                                       
+                    for (int k=0;k<width;k++){                                      
+                        PointAtDieNumber(diceValues,dice,i,k,j,num);          
+                    }
+                    Console.Write("   ");
                 }
                 System.Console.WriteLine();
             }

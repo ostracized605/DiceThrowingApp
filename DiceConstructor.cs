@@ -49,6 +49,19 @@ namespace DiceThrowing{
                 System.Console.WriteLine();
             }
         }
+
+        static void PrintDie1(string[,] array,int numberOfDice,int height=8,int width=16){
+            for (int i=0;i<height;i++){                 //rows
+                for (int j=0;j<numberOfDice;j++){        //n=2
+                    for(int k=0;k<width;k++){            //columns
+                    System.Console.Write(array[i,j]);
+                    }
+                    Console.Write("   ");
+                }
+                System.Console.WriteLine();
+            }
+        }
+
         internal static void PrintDice(object[] array,int height=8,int width=16){
             for(int i=0;i<6;i++){
                 System.Console.WriteLine();

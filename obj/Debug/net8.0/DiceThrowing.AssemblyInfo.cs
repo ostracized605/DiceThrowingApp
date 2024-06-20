@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiceThrowing")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06d71425312d0070d4bfeca4f5b58bef432128b6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3a24389238bd35ea10c5d81918f440d1f217946")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiceThrowing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiceThrowing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
