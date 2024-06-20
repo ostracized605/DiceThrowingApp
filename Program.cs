@@ -17,7 +17,9 @@ namespace DiceThrowing{
             gm.NumberOfDice=gm.Choosing();
             //Output result
             int[] array=gm.Throwing(gm.NumberOfDice);
+            //Colours.ChangeColour(color);
+            //Console.ReadLine();
+            
         }
     }
 }
-        

@@ -9,7 +9,6 @@ namespace DiceThrowing{
 
         private delegate void GeneralDieConstructCondition(int i, int j,ref string[,] array,int height=8,int width=16);
         private delegate void DieConstructCondition(int i, int j,int x, string[,] array,int height=8,int width=16);
-        ///probably array[,]?
         public static void DieConstructor(ref object[] dice){
             string[,] die=new string[height,width];    ///i = row, j = column
 
