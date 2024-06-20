@@ -17,7 +17,10 @@ namespace DiceThrowing{
             gm.DiceChosen=gm.Choosing();
             //Output result
             int[] array=gm.Throwing(gm.DiceChosen);
+<<<<<<< HEAD
             Console.ReadLine();
+=======
+>>>>>>> 8fbfaf2b78fa8e8a8cd55ee107e7a934b29e1e8e
         }
     }
 }
